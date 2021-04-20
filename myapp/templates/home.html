@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block body %}
+<h1 class="text-center">category</h1>
+{% for i in category %}
+<hr>
+<h5 class="text-capitalize text-center">{{i.name}}</h5>
+<hr>
+
+<div class="row">
+    {% for product in i.products_set.all %}
+    <div class="col">
+        <div class="card text-dark bg-light" style="width: 18rem;">
+            <div class="card-body text-capitalize">
+                <a class="card-title" href="{% url 'detail' product.category product.slug %}">{{ product.name }}</a>
+                <p>{{ product.price }}</p>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+
+{% endfor %}
+
+{% endblock %}
